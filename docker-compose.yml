@@ -1,0 +1,23 @@
+version: '3'
+services:
+  backend:
+    build: ./backend
+    container_name: lotti-backend
+    volumes:
+      - ./backend/data:/app/data
+      - ./backend/uploads:/app/uploads
+    networks:
+      - lotti-net
+
+  web:
+    build: ./frontend
+    container_name: lotti-web
+    ports:
+      - "8097:80"
+    depends_on:
+      - backend
+    networks:
+      - lotti-net
+
+networks:
+  lotti-net:

@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lotti — 대시보드</title>
+  <link rel="stylesheet" as="style" onload="this.rel='stylesheet'" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Pretendard', sans-serif;
+      background: #0f172a;
+      color: #f1f5f9;
+      min-height: 100vh;
+    }
+
+    /* ─── Navbar ─── */
+    nav {
+      background: #1e293b;
+      border-bottom: 1px solid #334155;
+      padding: 0 24px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      font-size: 1.3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #6366f1, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .nav-user {
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+    .nav-user span { color: #a78bfa; font-weight: 700; }
+    .btn-sm {
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      font-family: 'Pretendard', sans-serif;
+      transition: opacity 0.2s;
+    }
+    .btn-sm:hover { opacity: 0.8; }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #475569;
+      color: #94a3b8;
+    }
+    .btn-admin {
+      background: linear-gradient(135deg, #6366f1, #7c3aed);
+      color: #fff;
+    }
+
+    /* ─── Content ─── */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+
+    /* ─── Milestone Bar ─── */
+    .section-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #64748b;
+      margin-bottom: 16px;
+    }
+    .milestone-card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 32px;
+    }
+    .milestone-track {
+      display: flex;
+      align-items: flex-start;
+      position: relative;
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+    .milestone-track::-webkit-scrollbar { height: 4px; }
+    .milestone-track::-webkit-scrollbar-thumb { background: #334155; border-radius: 2px; }
+    .milestone-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      min-width: 110px;
+      position: relative;
+    }
+    .milestone-date {
+      font-size: 0.72rem;
+      color: #64748b;
+      margin-bottom: 10px;
+      white-space: nowrap;
+    }
+    .milestone-connector {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      position: relative;
+      margin-bottom: 10px;
+    }
+    .milestone-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 2;
+    }
+    .milestone-line {
+      flex: 1;
+      height: 2px;
+      background: #334155;
+    }
+    .milestone-line.done { background: #22c55e; }
+    .milestone-line.current { background: linear-gradient(to right, #22c55e, #6366f1); }
+    .milestone-dot.done { background: #22c55e; }
+    .milestone-dot.current {
+      background: #6366f1;
+      box-shadow: 0 0 0 4px rgba(99,102,241,0.25);
+      animation: pulse 2s infinite;
+    }
+    .milestone-dot.upcoming { background: #334155; border: 2px solid #475569; }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 4px rgba(99,102,241,0.25); }
+      50% { box-shadow: 0 0 0 8px rgba(99,102,241,0.1); }
+    }
+    .milestone-name {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-align: center;
+      color: #e2e8f0;
+    }
+    .milestone-name.upcoming { color: #475569; }
+    .milestone-name.done { color: #86efac; }
+    .milestone-name.current { color: #a5b4fc; }
+
+    /* Last item: no line after dot */
+    .milestone-item:last-child .milestone-line { display: none; }
+    .milestone-item:last-child .milestone-connector { justify-content: flex-start; }
+
+    /* ─── Board ─── */
+    .board-card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .board-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid #334155;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .tabs {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+    .tab {
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: #64748b;
+      background: transparent;
+      border: 1px solid transparent;
+      transition: all 0.15s;
+      font-family: 'Pretendard', sans-serif;
+    }
+    .tab:hover { color: #e2e8f0; background: #0f172a; }
+    .tab.active {
+      color: #a5b4fc;
+      background: rgba(99,102,241,0.15);
+      border-color: rgba(99,102,241,0.3);
+    }
+    .btn-write {
+      background: linear-gradient(135deg, #6366f1, #7c3aed);
+      color: #fff;
+      padding: 8px 18px;
+      border-radius: 9px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      font-family: 'Pretendard', sans-serif;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+    .btn-write:hover { opacity: 0.85; }
+
+    /* Table */
+    .board-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .board-table th {
+      padding: 12px 16px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #64748b;
+      text-align: left;
+      border-bottom: 1px solid #334155;
+      background: #16213a;
+    }
+    .board-table td {
+      padding: 14px 16px;
+      font-size: 0.88rem;
+      color: #cbd5e1;
+      border-bottom: 1px solid #1e2d47;
+      vertical-align: middle;
+    }
+    .board-table tr:last-child td { border-bottom: none; }
+    .board-table tr:hover td { background: rgba(99,102,241,0.05); }
+    .post-title-link {
+      color: #e2e8f0;
+      font-weight: 600;
+      cursor: pointer;
+      transition: color 0.15s;
+    }
+    .post-title-link:hover { color: #a5b4fc; }
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+    .badge-abx3 { background: rgba(99,102,241,0.15); color: #a5b4fc; }
+    .badge-lotti { background: rgba(16,185,129,0.15); color: #6ee7b7; }
+    .badge-패로브 { background: rgba(245,158,11,0.15); color: #fcd34d; }
+    .badge-기타 { background: rgba(100,116,139,0.15); color: #94a3b8; }
+    .file-icon { color: #6366f1; font-size: 1rem; }
+    .empty-state {
+      text-align: center;
+      padding: 48px;
+      color: #475569;
+      font-size: 0.9rem;
+    }
+
+    /* ─── Modal ─── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(4px);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 600px;
+      max-height: 85vh;
+      overflow-y: auto;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+    }
+    .modal-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid #334155;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .modal-header h3 { font-size: 1rem; font-weight: 700; }
+    .modal-close {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      border: none;
+      background: #334155;
+      color: #94a3b8;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s;
+    }
+    .modal-close:hover { background: #475569; color: #fff; }
+    .modal-body { padding: 24px; }
+    .form-row { margin-bottom: 18px; }
+    .form-row label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #94a3b8;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 10px 14px;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 9px;
+      color: #f1f5f9;
+      font-family: 'Pretendard', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99,102,241,0.1);
+    }
+    .form-textarea { min-height: 120px; resize: vertical; }
+    .form-select option { background: #1e293b; }
+    .form-input[readonly] { color: #64748b; cursor: default; }
+    .file-input-wrap {
+      border: 2px dashed #334155;
+      border-radius: 9px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .file-input-wrap:hover { border-color: #6366f1; }
+    .file-input-wrap input { display: none; }
+    .file-input-wrap p { color: #64748b; font-size: 0.85rem; }
+    .file-list-preview { margin-top: 10px; }
+    .file-list-preview .fitem {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      padding: 4px 0;
+    }
+    .modal-footer {
+      padding: 16px 24px;
+      border-top: 1px solid #334155;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+    .btn-cancel {
+      padding: 9px 20px;
+      background: #334155;
+      border: none;
+      border-radius: 9px;
+      color: #94a3b8;
+      font-family: 'Pretendard', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-submit {
+      padding: 9px 24px;
+      background: linear-gradient(135deg, #6366f1, #7c3aed);
+      border: none;
+      border-radius: 9px;
+      color: #fff;
+      font-family: 'Pretendard', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .btn-submit:hover { opacity: 0.85; }
+
+    /* Detail modal */
+    .detail-meta {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+      font-size: 0.82rem;
+      color: #64748b;
+    }
+    .detail-meta span { color: #94a3b8; }
+    .detail-content {
+      background: #0f172a;
+      border-radius: 10px;
+      padding: 16px;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: #cbd5e1;
+      white-space: pre-wrap;
+      margin-bottom: 20px;
+      min-height: 80px;
+    }
+    .file-download-list { display: flex; flex-direction: column; gap: 8px; }
+    .file-download-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      background: #0f172a;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s;
+      text-decoration: none;
+      color: #cbd5e1;
+      font-size: 0.85rem;
+    }
+    .file-download-item:hover { background: #1e2d47; color: #a5b4fc; }
+
+    /* ─── Info Boards ─── */
+    .info-boards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .info-board-card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .info-board-title {
+      padding: 14px 18px;
+      border-bottom: 1px solid #334155;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #a5b4fc;
+      background: rgba(99,102,241,0.06);
+    }
+    .info-board-content {
+      padding: 16px 18px;
+      font-size: 0.875rem;
+      line-height: 1.65;
+      color: #cbd5e1;
+      white-space: pre-wrap;
+      min-height: 80px;
+    }
+    .info-board-empty {
+      color: #475569;
+      font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+      .info-boards-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .container { padding: 20px 16px; }
+      .milestone-card { padding: 20px 16px; }
+      .board-table th:nth-child(1),
+      .board-table td:nth-child(1) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">LOTTI</div>
+  <div class="nav-right">
+    <div class="nav-user">안녕하세요, <span id="navUser"></span></div>
+    <button class="btn-sm btn-admin" id="adminBtn" onclick="window.location.href='admin.html'" style="display:none">⚙️ 관리</button>
+    <button class="btn-sm btn-outline" onclick="logout()">로그아웃</button>
+  </div>
+</nav>
+
+<div class="container">
+  <!-- Milestone -->
+  <div class="section-title">프로젝트 마일스톤</div>
+  <div class="milestone-card">
+    <div class="milestone-track" id="milestoneTrack">
+      <div class="empty-state">로딩 중...</div>
+    </div>
+  </div>
+
+  <!-- Info Boards -->
+  <div class="section-title">현황 보드</div>
+  <div class="info-boards-grid" id="infoBoards">
+    <div class="info-board-card"><div class="info-board-content info-board-empty">로딩 중...</div></div>
+    <div class="info-board-card"><div class="info-board-content info-board-empty">로딩 중...</div></div>
+    <div class="info-board-card"><div class="info-board-content info-board-empty">로딩 중...</div></div>
+  </div>
+
+  <!-- Board -->
+  <div class="section-title">게시판</div>
+  <div class="board-card">
+    <div class="board-header">
+      <div class="tabs" id="tabs">
+        <button class="tab active" onclick="selectTab('전체', this)">전체</button>
+        <button class="tab" onclick="selectTab('abx3', this)">abx3</button>
+        <button class="tab" onclick="selectTab('lotti', this)">lotti</button>
+        <button class="tab" onclick="selectTab('패로브', this)">패로브</button>
+        <button class="tab" onclick="selectTab('기타', this)">기타</button>
+      </div>
+      <button class="btn-write" onclick="openWriteModal()">+ 글쓰기</button>
+    </div>
+    <table class="board-table">
+      <thead>
+        <tr>
+          <th style="width:60px">번호</th>
+          <th>제목</th>
+          <th style="width:90px">작성자</th>
+          <th style="width:90px">카테고리</th>
+          <th style="width:110px">날짜</th>
+          <th style="width:50px">파일</th>
+        </tr>
+      </thead>
+      <tbody id="postTable"></tbody>
+    </table>
+    <div id="emptyState" class="empty-state" style="display:none">게시글이 없습니다</div>
+  </div>
+</div>
+
+<!-- Write Modal -->
+<div class="modal-overlay" id="writeModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>글쓰기</h3>
+      <button class="modal-close" onclick="closeModal('writeModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <label>제목</label>
+        <input type="text" class="form-input" id="postTitle" placeholder="제목을 입력하세요">
+      </div>
+      <div class="form-row">
+        <label>카테고리</label>
+        <select class="form-select" id="postCategory">
+          <option value="abx3">abx3</option>
+          <option value="lotti">lotti</option>
+          <option value="패로브">패로브</option>
+          <option value="기타">기타</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>작성자</label>
+        <input type="text" class="form-input" id="postAuthor" readonly>
+      </div>
+      <div class="form-row">
+        <label>내용</label>
+        <textarea class="form-textarea" id="postContent" placeholder="내용을 입력하세요"></textarea>
+      </div>
+      <div class="form-row">
+        <label>파일 첨부</label>
+        <div class="file-input-wrap" onclick="document.getElementById('fileInput').click()">
+          <input type="file" id="fileInput" multiple onchange="updateFilePreview()">
+          <p>📎 클릭하여 파일 선택 (다중 선택 가능)</p>
+        </div>
+        <div class="file-list-preview" id="filePreview"></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closeModal('writeModal')">취소</button>
+      <button class="btn-submit" onclick="submitPost()">등록</button>
+    </div>
+  </div>
+</div>
+
+<!-- Detail Modal -->
+<div class="modal-overlay" id="detailModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="detailTitle">제목</h3>
+      <button class="modal-close" onclick="closeModal('detailModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="detail-meta" id="detailMeta"></div>
+      <div class="detail-content" id="detailContent"></div>
+      <div id="detailFilesWrap" style="display:none">
+        <div style="font-size:0.8rem;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:10px">첨부파일</div>
+        <div class="file-download-list" id="detailFiles"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ─── Auth ───────────────────────────────────────────────────
+  const user = sessionStorage.getItem('user');
+  if (!user) window.location.href = 'index.html';
+
+  document.getElementById('navUser').textContent = user.toUpperCase();
+
+  // Show admin button for abox3 domain
+  if (window.location.hostname.includes('abox3')) {
+    document.getElementById('adminBtn').style.display = 'block';
+  }
+
+  function logout() {
+    sessionStorage.removeItem('user');
+    window.location.href = 'index.html';
+  }
+
+  // ─── Milestones ─────────────────────────────────────────────
+  async function loadMilestones() {
+    const res = await fetch('/api/milestones');
+    const data = await res.json();
+    const track = document.getElementById('milestoneTrack');
+    const today = new Date().toISOString().split('T')[0];
+    track.innerHTML = '';
+
+    data.forEach((m, i) => {
+      let status = 'upcoming';
+      if (m.date) {
+        if (m.date < today) status = 'done';
+        else if (m.date === today) status = 'current';
+        else {
+          // find previous done: if this is next after done, mark current
+          const prev = data[i-1];
+          if (i === 0) status = 'current';
+          else if (prev && prev.date && prev.date < today) status = 'current';
+        }
+      }
+
+      const item = document.createElement('div');
+      item.className = 'milestone-item';
+      const lineClass = status === 'done' ? 'done' : (status === 'current' ? 'current' : '');
+      item.innerHTML = `
+        <div class="milestone-date">${m.date || '-'}</div>
+        <div class="milestone-connector">
+          <div class="milestone-dot ${status}"></div>
+          <div class="milestone-line ${lineClass}"></div>
+        </div>
+        <div class="milestone-name ${status}">${m.name}</div>
+      `;
+      track.appendChild(item);
+    });
+  }
+
+  // ─── Board ──────────────────────────────────────────────────
+  let currentCategory = '전체';
+
+  function selectTab(cat, el) {
+    currentCategory = cat;
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    loadPosts();
+  }
+
+  async function loadPosts() {
+    const url = currentCategory === '전체' ? '/api/posts' : `/api/posts?category=${encodeURIComponent(currentCategory)}`;
+    const res = await fetch(url);
+    const posts = await res.json();
+    const tbody = document.getElementById('postTable');
+    const empty = document.getElementById('emptyState');
+
+    if (posts.length === 0) {
+      tbody.innerHTML = '';
+      empty.style.display = 'block';
+      return;
+    }
+    empty.style.display = 'none';
+
+    const badgeMap = { abx3:'badge-abx3', lotti:'badge-lotti', '패로브':'badge-패로브', '기타':'badge-기타' };
+    tbody.innerHTML = posts.map((p, i) => `
+      <tr>
+        <td>${posts.length - i}</td>
+        <td><span class="post-title-link" onclick="openDetail(${p.id})">${escHtml(p.title)}</span></td>
+        <td>${escHtml(p.author.toUpperCase())}</td>
+        <td><span class="badge ${badgeMap[p.category] || 'badge-기타'}">${escHtml(p.category)}</span></td>
+        <td>${p.created_at.slice(0,10)}</td>
+        <td>${p.file_count > 0 ? `<span class="file-icon">📎${p.file_count > 1 ? p.file_count : ''}</span>` : ''}</td>
+      </tr>
+    `).join('');
+  }
+
+  async function openDetail(id) {
+    const res = await fetch(`/api/posts/${id}`);
+    const post = await res.json();
+    document.getElementById('detailTitle').textContent = post.title;
+    document.getElementById('detailMeta').innerHTML = `
+      <span>작성자: <b>${post.author.toUpperCase()}</b></span>
+      <span>카테고리: <b>${post.category}</b></span>
+      <span>${post.created_at.slice(0,16).replace('T',' ')}</span>
+    `;
+    document.getElementById('detailContent').textContent = post.content || '(내용 없음)';
+
+    const filesWrap = document.getElementById('detailFilesWrap');
+    const filesList = document.getElementById('detailFiles');
+    if (post.files && post.files.length > 0) {
+      filesWrap.style.display = 'block';
+      filesList.innerHTML = post.files.map(f => `
+        <a class="file-download-item" href="/api/files/${f.id}/download" download>
+          📄 ${escHtml(f.original_name)}
+          <span style="margin-left:auto;font-size:0.75rem;color:#64748b">${formatSize(f.size)}</span>
+        </a>
+      `).join('');
+    } else {
+      filesWrap.style.display = 'none';
+    }
+
+    openModal('detailModal');
+  }
+
+  // ─── Write Modal ─────────────────────────────────────────────
+  function openWriteModal() {
+    document.getElementById('postTitle').value = '';
+    document.getElementById('postContent').value = '';
+    document.getElementById('postAuthor').value = user;
+    document.getElementById('fileInput').value = '';
+    document.getElementById('filePreview').innerHTML = '';
+    openModal('writeModal');
+  }
+
+  function updateFilePreview() {
+    const files = document.getElementById('fileInput').files;
+    const preview = document.getElementById('filePreview');
+    preview.innerHTML = Array.from(files).map(f =>
+      `<div class="fitem">📄 ${escHtml(f.name)} (${formatSize(f.size)})</div>`
+    ).join('');
+  }
+
+  async function submitPost() {
+    const title = document.getElementById('postTitle').value.trim();
+    const content = document.getElementById('postContent').value.trim();
+    const category = document.getElementById('postCategory').value;
+    const files = document.getElementById('fileInput').files;
+
+    if (!title) { alert('제목을 입력하세요'); return; }
+
+    const fd = new FormData();
+    fd.append('title', title);
+    fd.append('content', content);
+    fd.append('author', user);
+    fd.append('category', category);
+    for (const f of files) fd.append('files', f);
+
+    const res = await fetch('/api/posts', { method: 'POST', body: fd });
+    if (res.ok) {
+      closeModal('writeModal');
+      loadPosts();
+    } else {
+      alert('등록 실패');
+    }
+  }
+
+  // ─── Modal helpers ──────────────────────────────────────────
+  function openModal(id) { document.getElementById(id).classList.add('open'); }
+  function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+  document.querySelectorAll('.modal-overlay').forEach(el => {
+    el.addEventListener('click', (e) => { if (e.target === el) el.classList.remove('open'); });
+  });
+
+  // ─── Utility ────────────────────────────────────────────────
+  function escHtml(s) {
+    if (!s) return '';
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+  function formatSize(bytes) {
+    if (!bytes) return '';
+    if (bytes < 1024) return bytes + 'B';
+    if (bytes < 1048576) return (bytes/1024).toFixed(1) + 'KB';
+    return (bytes/1048576).toFixed(1) + 'MB';
+  }
+
+  // ─── Info Boards ─────────────────────────────────────────────
+  async function loadBoards() {
+    const res = await fetch('/api/boards');
+    const boards = await res.json();
+    const container = document.getElementById('infoBoards');
+    container.innerHTML = boards.map(b => `
+      <div class="info-board-card">
+        <div class="info-board-title">${escHtml(b.name)}</div>
+        <div class="info-board-content">${b.content ? escHtml(b.content) : '<span class="info-board-empty">내용 없음</span>'}</div>
+      </div>
+    `).join('');
+  }
+
+  // ─── Init ────────────────────────────────────────────────────
+  loadMilestones();
+  loadBoards();
+  loadPosts();
+</script>
+</body>
+</html>

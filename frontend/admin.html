@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lotti — 관리자</title>
+  <link rel="stylesheet" as="style" onload="this.rel='stylesheet'" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Pretendard', sans-serif;
+      background: #0f172a;
+      color: #f1f5f9;
+      min-height: 100vh;
+    }
+    nav {
+      background: #1e293b;
+      border-bottom: 1px solid #334155;
+      padding: 0 24px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      font-size: 1.3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #6366f1, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .btn-sm {
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      font-family: 'Pretendard', sans-serif;
+    }
+    .btn-outline { background: transparent; border: 1px solid #475569; color: #94a3b8; }
+    .btn-dash { background: rgba(99,102,241,0.15); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.3); }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+    .page-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .page-subtitle {
+      font-size: 0.88rem;
+      color: #64748b;
+      margin-bottom: 32px;
+    }
+    .admin-card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .admin-card-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid #334155;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #64748b;
+    }
+    .milestone-row {
+      display: grid;
+      grid-template-columns: 1fr 200px 100px;
+      align-items: center;
+      padding: 16px 24px;
+      border-bottom: 1px solid #1e2d47;
+      gap: 16px;
+    }
+    .milestone-row:last-child { border-bottom: none; }
+    .milestone-row-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    .milestone-row-name .order-badge {
+      display: inline-block;
+      width: 22px; height: 22px;
+      background: rgba(99,102,241,0.15);
+      border-radius: 6px;
+      color: #a5b4fc;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-align: center;
+      line-height: 22px;
+      margin-right: 10px;
+    }
+    input[type="date"] {
+      width: 100%;
+      padding: 8px 12px;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      color: #f1f5f9;
+      font-family: 'Pretendard', sans-serif;
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.2s;
+      color-scheme: dark;
+    }
+    input[type="date"]:focus {
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99,102,241,0.1);
+    }
+    .btn-save {
+      padding: 8px 16px;
+      background: linear-gradient(135deg, #6366f1, #7c3aed);
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-family: 'Pretendard', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      white-space: nowrap;
+    }
+    .btn-save:hover { opacity: 0.85; }
+    .save-status {
+      font-size: 0.78rem;
+      color: #22c55e;
+      font-weight: 600;
+      min-width: 48px;
+      text-align: right;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .save-status.show { opacity: 1; }
+
+    /* ─── Board Edit ─── */
+    .board-edit-section {
+      margin-top: 32px;
+    }
+    .board-edit-row {
+      padding: 20px 24px;
+      border-bottom: 1px solid #1e2d47;
+    }
+    .board-edit-row:last-child { border-bottom: none; }
+    .board-edit-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #a5b4fc;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+    }
+    .board-edit-textarea {
+      width: 100%;
+      padding: 10px 14px;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 9px;
+      color: #f1f5f9;
+      font-family: 'Pretendard', sans-serif;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      outline: none;
+      resize: vertical;
+      min-height: 100px;
+      transition: border-color 0.2s;
+    }
+    .board-edit-textarea:focus {
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99,102,241,0.1);
+    }
+    .board-edit-footer {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+      justify-content: flex-end;
+    }
+
+    @media (max-width: 540px) {
+      .milestone-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">LOTTI <span style="font-size:0.7rem;font-weight:500;color:#64748b;background:none;-webkit-background-clip:unset;-webkit-text-fill-color:#64748b">ADMIN</span></div>
+  <div class="nav-right">
+    <button class="btn-sm btn-dash" onclick="window.location.href='dashboard.html'">← 대시보드</button>
+    <button class="btn-sm btn-outline" onclick="logout()">로그아웃</button>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="page-title">⚙️ 관리자 페이지</div>
+  <div class="page-subtitle">마일스톤 날짜를 편집합니다. 날짜 설정 후 저장 버튼을 눌러주세요.</div>
+
+  <div class="admin-card">
+    <div class="admin-card-header">마일스톤 날짜 편집</div>
+    <div id="milestoneRows">
+      <div style="padding:32px;text-align:center;color:#475569;font-size:0.88rem">로딩 중...</div>
+    </div>
+  </div>
+
+  <!-- Board Edit -->
+  <div class="board-edit-section">
+    <div class="admin-card">
+      <div class="admin-card-header">현황 보드 편집</div>
+      <div id="boardEditRows">
+        <div style="padding:32px;text-align:center;color:#475569;font-size:0.88rem">로딩 중...</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const user = sessionStorage.getItem('user');
+  if (!user) window.location.href = 'index.html';
+
+  function logout() {
+    sessionStorage.removeItem('user');
+    window.location.href = 'index.html';
+  }
+
+  async function loadMilestones() {
+    const res = await fetch('/api/milestones');
+    const data = await res.json();
+    const container = document.getElementById('milestoneRows');
+    container.innerHTML = data.map(m => `
+      <div class="milestone-row">
+        <div class="milestone-row-name">
+          <span class="order-badge">${m.display_order}</span>${m.name}
+        </div>
+        <input type="date" id="date_${m.display_order}" value="${m.date || ''}" data-name="${m.name}">
+        <div style="display:flex;align-items:center;gap:8px">
+          <button class="btn-save" onclick="saveMilestone('${m.name}', ${m.display_order})">저장</button>
+          <span class="save-status" id="status_${m.display_order}">저장됨</span>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  async function saveMilestone(name, order) {
+    const input = document.getElementById(`date_${order}`);
+    const date = input.value || null;
+    const encodedName = encodeURIComponent(name);
+    const res = await fetch(`/api/milestones/${encodedName}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ date })
+    });
+    const statusEl = document.getElementById(`status_${order}`);
+    if (res.ok) {
+      statusEl.classList.add('show');
+      setTimeout(() => statusEl.classList.remove('show'), 2000);
+    } else {
+      alert('저장 실패');
+    }
+  }
+
+  async function loadBoards() {
+    const res = await fetch('/api/boards');
+    const boards = await res.json();
+    const container = document.getElementById('boardEditRows');
+    container.innerHTML = boards.map((b, i) => `
+      <div class="board-edit-row">
+        <div class="board-edit-label">${escHtml(b.name)}</div>
+        <textarea class="board-edit-textarea" id="board_${i}" data-name="${escAttr(b.name)}">${escHtml(b.content || '')}</textarea>
+        <div class="board-edit-footer">
+          <span class="save-status" id="bstatus_${i}">저장됨</span>
+          <button class="btn-save" onclick="saveBoard('${escAttr(b.name)}', ${i})">저장</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  async function saveBoard(name, idx) {
+    const textarea = document.getElementById(`board_${idx}`);
+    const content = textarea.value;
+    const encodedName = encodeURIComponent(name);
+    const res = await fetch(`/api/boards/${encodedName}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content })
+    });
+    const statusEl = document.getElementById(`bstatus_${idx}`);
+    if (res.ok) {
+      statusEl.classList.add('show');
+      setTimeout(() => statusEl.classList.remove('show'), 2000);
+    } else {
+      alert('저장 실패');
+    }
+  }
+
+  function escHtml(s) {
+    if (!s) return '';
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+  function escAttr(s) {
+    if (!s) return '';
+    return s.replace(/'/g, "\\'");
+  }
+
+  loadMilestones();
+  loadBoards();
+</script>
+</body>
+</html>
