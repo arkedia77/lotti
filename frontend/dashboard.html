@@ -256,6 +256,7 @@
     .badge-lotti { background: rgba(16,185,129,0.15); color: #6ee7b7; }
     .badge-패로브 { background: rgba(245,158,11,0.15); color: #fcd34d; }
     .badge-기타 { background: rgba(100,116,139,0.15); color: #94a3b8; }
+    .badge-회의록 { background: rgba(236,72,153,0.15); color: #f9a8d4; }
     .file-icon { color: #6366f1; font-size: 1rem; }
     .empty-state {
       text-align: center;
@@ -506,6 +507,7 @@
         <button class="tab" onclick="selectTab('abx3', this)">abx3</button>
         <button class="tab" onclick="selectTab('lotti', this)">lotti</button>
         <button class="tab" onclick="selectTab('패로브', this)">패로브</button>
+        <button class="tab" onclick="selectTab('회의록', this)">회의록</button>
         <button class="tab" onclick="selectTab('기타', this)">기타</button>
       </div>
       <button class="btn-write" onclick="openWriteModal()">+ 글쓰기</button>
@@ -545,6 +547,7 @@
           <option value="abx3">abx3</option>
           <option value="lotti">lotti</option>
           <option value="패로브">패로브</option>
+          <option value="회의록">회의록</option>
           <option value="기타">기타</option>
         </select>
       </div>
@@ -667,7 +670,7 @@
     }
     empty.style.display = 'none';
 
-    const badgeMap = { abx3:'badge-abx3', lotti:'badge-lotti', '패로브':'badge-패로브', '기타':'badge-기타' };
+    const badgeMap = { abx3:'badge-abx3', lotti:'badge-lotti', '패로브':'badge-패로브', '회의록':'badge-회의록', '기타':'badge-기타' };
     tbody.innerHTML = posts.map((p, i) => `
       <tr>
         <td>${posts.length - i}</td>
