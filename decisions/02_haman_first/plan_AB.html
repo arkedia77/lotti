@@ -25,7 +25,6 @@
     background: var(--bg);
     color: var(--text);
     line-height: 1.6;
-    padding: 0;
   }
   .header {
     background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
@@ -35,21 +34,9 @@
     top: 0;
     z-index: 100;
   }
-  .header h1 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-  }
-  .header .subtitle {
-    color: var(--text-dim);
-    font-size: 0.85rem;
-    margin-bottom: 1rem;
-  }
-  .tabs {
-    display: flex;
-    gap: 0;
-    border-bottom: none;
-  }
+  .header h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .header .subtitle { color: var(--text-dim); font-size: 0.85rem; margin-bottom: 1rem; }
+  .tabs { display: flex; gap: 0; }
   .tab {
     padding: 0.75rem 1.5rem;
     cursor: pointer;
@@ -63,36 +50,13 @@
     background: transparent;
   }
   .tab:hover { color: var(--text); background: var(--surface); }
-  .tab.active-a {
-    color: var(--accent-a);
-    background: var(--surface);
-    border-color: var(--border);
-  }
-  .tab.active-b {
-    color: var(--accent-b);
-    background: var(--surface);
-    border-color: var(--border);
-  }
-  .tab.active-common {
-    color: var(--green);
-    background: var(--surface);
-    border-color: var(--border);
-  }
-  .tab.active-compare {
-    color: var(--orange);
-    background: var(--surface);
-    border-color: var(--border);
-  }
-  .tab.active-todo {
-    color: var(--yellow);
-    background: var(--surface);
-    border-color: var(--border);
-  }
-  .content {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 2rem;
-  }
+  .tab.active-a { color: var(--accent-a); background: var(--surface); border-color: var(--border); }
+  .tab.active-b { color: var(--accent-b); background: var(--surface); border-color: var(--border); }
+  .tab.active-common { color: var(--green); background: var(--surface); border-color: var(--border); }
+  .tab.active-compare { color: var(--orange); background: var(--surface); border-color: var(--border); }
+  .tab.active-todo { color: var(--yellow); background: var(--surface); border-color: var(--border); }
+  .tab.active-saramdeul { color: #f472b6; background: var(--surface); border-color: var(--border); }
+  .content { max-width: 1100px; margin: 0 auto; padding: 2rem; }
   .panel { display: none; }
   .panel.active { display: block; }
   .card {
@@ -102,48 +66,18 @@
     padding: 1.5rem;
     margin-bottom: 1.5rem;
   }
-  .card h2 {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .card h3 {
-    font-size: 1rem;
-    margin: 1.25rem 0 0.75rem;
-    color: var(--text-dim);
-  }
-  .badge {
-    display: inline-block;
-    padding: 0.15rem 0.6rem;
-    border-radius: 999px;
-    font-size: 0.75rem;
-    font-weight: 600;
-  }
+  .card h2 { font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+  .card h3 { font-size: 1rem; margin: 1.25rem 0 0.75rem; color: var(--text-dim); }
+  .badge { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 999px; font-size: 0.75rem; font-weight: 600; }
   .badge-a { background: rgba(56,189,248,0.15); color: var(--accent-a); }
   .badge-b { background: rgba(167,139,250,0.15); color: var(--accent-b); }
   .badge-green { background: rgba(74,222,128,0.15); color: var(--green); }
   .badge-red { background: rgba(248,113,113,0.15); color: var(--red); }
   .badge-orange { background: rgba(251,146,60,0.15); color: var(--orange); }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.85rem;
-    margin: 0.5rem 0;
-  }
-  th, td {
-    padding: 0.6rem 0.75rem;
-    text-align: left;
-    border-bottom: 1px solid var(--surface2);
-  }
-  th {
-    color: var(--text-dim);
-    font-weight: 600;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-  }
+  .badge-pink { background: rgba(244,114,182,0.15); color: #f472b6; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin: 0.5rem 0; }
+  th, td { padding: 0.6rem 0.75rem; text-align: left; border-bottom: 1px solid var(--surface2); }
+  th { color: var(--text-dim); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.03em; }
   tr:last-child td { border-bottom: none; }
   .total-row { font-weight: 700; }
   .total-row td { border-top: 2px solid var(--border); }
@@ -159,32 +93,17 @@
     overflow-x: auto;
     color: var(--text-dim);
   }
-  .flow-diagram .highlight-a { color: var(--accent-a); font-weight: 600; }
-  .flow-diagram .highlight-b { color: var(--accent-b); font-weight: 600; }
-  .flow-diagram .highlight-g { color: var(--green); font-weight: 600; }
-  .flow-diagram .highlight-o { color: var(--orange); font-weight: 600; }
+  .flow-diagram .ha { color: var(--accent-a); font-weight: 600; }
+  .flow-diagram .hb { color: var(--accent-b); font-weight: 600; }
+  .flow-diagram .hg { color: var(--green); font-weight: 600; }
+  .flow-diagram .ho { color: var(--orange); font-weight: 600; }
+  .flow-diagram .hr { color: var(--red); font-weight: 600; }
   .pro { color: var(--green); }
   .con { color: var(--red); }
-  .pros-cons {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-  .pros-cons ul {
-    list-style: none;
-    padding: 0;
-  }
-  .pros-cons li {
-    padding: 0.4rem 0;
-    font-size: 0.85rem;
-    padding-left: 1.2rem;
-    position: relative;
-  }
-  .pros-cons li::before {
-    position: absolute;
-    left: 0;
-    font-weight: 700;
-  }
+  .pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .pros-cons ul { list-style: none; padding: 0; }
+  .pros-cons li { padding: 0.4rem 0; font-size: 0.85rem; padding-left: 1.2rem; position: relative; }
+  .pros-cons li::before { position: absolute; left: 0; font-weight: 700; }
   .pros-cons .pro-list li::before { content: "+"; color: var(--green); }
   .pros-cons .con-list li::before { content: "-"; color: var(--red); }
   .compare-cell-a { color: var(--accent-a); }
@@ -193,19 +112,15 @@
   .tag-yes { color: var(--green); font-weight: 600; }
   .tag-no { color: var(--red); font-weight: 600; }
   .star { color: var(--yellow); }
-  .note {
-    background: rgba(251,191,36,0.08);
-    border-left: 3px solid var(--yellow);
-    padding: 0.75rem 1rem;
-    font-size: 0.85rem;
-    border-radius: 0 8px 8px 0;
-    margin: 1rem 0;
-  }
+  .note { background: rgba(251,191,36,0.08); border-left: 3px solid var(--yellow); padding: 0.75rem 1rem; font-size: 0.85rem; border-radius: 0 8px 8px 0; margin: 1rem 0; }
+  .note-red { background: rgba(248,113,113,0.08); border-left: 3px solid var(--red); padding: 0.75rem 1rem; font-size: 0.85rem; border-radius: 0 8px 8px 0; margin: 1rem 0; }
+  .gauge { display: inline-block; width: 60px; height: 8px; background: var(--surface2); border-radius: 4px; overflow: hidden; vertical-align: middle; margin-left: 0.5rem; }
+  .gauge-fill { height: 100%; border-radius: 4px; }
   @media (max-width: 768px) {
     .header { padding: 1rem 1rem 0; }
     .content { padding: 1rem; }
     .tabs { overflow-x: auto; }
-    .tab { padding: 0.6rem 1rem; font-size: 0.8rem; white-space: nowrap; }
+    .tab { padding: 0.6rem 0.8rem; font-size: 0.78rem; white-space: nowrap; }
     .pros-cons { grid-template-columns: 1fr; }
     table { font-size: 0.78rem; }
     th, td { padding: 0.5rem; }
@@ -216,12 +131,13 @@
 
 <div class="header">
   <h1>로티 구조안 v2 — 함안 우선 이전</h1>
-  <div class="subtitle">2026-03-20 / CSO Leo 지시 / 기존 Plan D~J 아카이브</div>
+  <div class="subtitle">2026-03-21 / CSO Leo / 출처: PPT(결정방향2), NICE 리포트, 등기부등본, 주주명부</div>
   <div class="tabs">
     <div class="tab active-common" data-tab="common" onclick="switchTab('common')">공통 전제</div>
     <div class="tab" data-tab="planA" onclick="switchTab('planA')">Plan A</div>
     <div class="tab" data-tab="planB" onclick="switchTab('planB')">Plan B</div>
     <div class="tab" data-tab="compare" onclick="switchTab('compare')">비교</div>
+    <div class="tab" data-tab="saramdeul" onclick="switchTab('saramdeul')">사람들 DD</div>
     <div class="tab" data-tab="todo" onclick="switchTab('todo')">미결사항</div>
   </div>
 </div>
@@ -233,56 +149,74 @@
     <div class="card">
       <h2>공통 전제조건</h2>
       <table>
-        <tr><th style="width:30%">항목</th><th>내용</th></tr>
+        <tr><th style="width:35%">항목</th><th>내용</th></tr>
         <tr><td><strong>1단계 (즉시)</strong></td><td>함안공장으로 설비 이전 (4/1 퇴거 대응)</td></tr>
         <tr><td><strong>2단계 (1개월 이내)</strong></td><td>A안 또는 B안 구조 확정 및 실행</td></tr>
-        <tr><td>로티 부채</td><td>은행 8억 + 미지급 4억 + 가지급 4억 = ~16억</td></tr>
-        <tr><td>로티 자산</td><td>설비(장부 ~7.9억) + 무형(~10.4억) + 임대표 노하우</td></tr>
-        <tr><td>누적결손금</td><td>73.3억원</td></tr>
-        <tr><td>사람들 가용 자금</td><td>60~70억 (단계적 집행)</td></tr>
-        <tr><td>함안공장</td><td>사람들 보유, 로티 설비 수용 가능, 무상임대</td></tr>
+        <tr><td>설비 인수 규모</td><td>장비 ~8억 + 특허 1~2억 = <strong>~10억</strong> (매매 방식)</td></tr>
+        <tr><td>은행 담보 차입</td><td>~8억 (설비담보)</td></tr>
+        <tr><td>미지급금 (임금/퇴직금)</td><td><strong>315,931,912원 (~3.16억)</strong></td></tr>
+        <tr><td>임대표 미지급+가수금</td><td>미지급 137,950,280 + 가수금 398,570,000 = <strong>536,520,280원 (~5.37억)</strong></td></tr>
+        <tr><td>누적결손금</td><td><strong>73.3억원</strong></td></tr>
+        <tr><td>함안공장</td><td>사람들 보유, 무상임대, 이전비 ~1억 사람들 부담</td></tr>
       </table>
     </div>
 
     <div class="card">
-      <h2>기존 기관 Exit 조건 <span class="badge badge-orange">확정</span></h2>
-      <div class="note">목표: 실투입 대비 40% 회수 / 50% 현금 + 50% 지분 유지</div>
+      <h2>기관 Exit 조건 <span class="badge badge-orange">확정</span></h2>
+      <div class="note">10% 현금 상환 + 나머지 90% 신규법인/JV 지분교환</div>
       <table>
-        <tr><th>투자자</th><th>실투입</th><th>40% 목표</th><th>현금 (50%)</th><th>지분 유지 (50%)</th></tr>
-        <tr><td>에이지인베스트먼트</td><td>5억</td><td>2억</td><td>1억</td><td>1억 상당 지분</td></tr>
-        <tr><td>인라이트벤처스</td><td>20억</td><td>8억</td><td>4억</td><td>4억 상당 지분</td></tr>
-        <tr><td>한국벤처투자</td><td>10억</td><td>4억</td><td>2억</td><td>2억 상당 지분</td></tr>
-        <tr><td>(주)야스</td><td>10억</td><td>4억</td><td>2억</td><td>2억 상당 지분</td></tr>
-        <tr class="total-row"><td><strong>합계</strong></td><td><strong>45억</strong></td><td><strong>18억</strong></td><td><strong>9억</strong></td><td><strong>9억 상당</strong></td></tr>
-      </table>
-      <div class="note">야스: 설비 현물출자분 있으므로 별도 정산 협의 필요</div>
-    </div>
-
-    <div class="card">
-      <h2>함안공장 이전 (A/B 공통 1단계)</h2>
-      <table>
-        <tr><th>단계</th><th>내용</th><th>시기</th></tr>
-        <tr><td>1</td><td>은행 담보 협의 (설비 이전 사전 승인)</td><td>~3/25</td></tr>
-        <tr><td>2</td><td>패킹 시작</td><td>3/21~</td></tr>
-        <tr><td>3</td><td>설비 함안 이전 완료</td><td>~4/1</td></tr>
-        <tr><td>4</td><td>기본 전력/유틸리티 세팅</td><td>4월 초</td></tr>
-        <tr><td>5</td><td><strong>이전 완료 후 1개월 이내 A or B 실행</strong></td><td>~5/1</td></tr>
+        <tr><th>투자자</th><th>투자금액</th><th>10% 상환</th><th>잔액 (지분교환)</th></tr>
+        <tr><td>임우빈 대표 (조정)</td><td>5억</td><td>0.5억</td><td>4.5억</td></tr>
+        <tr><td>인라이트9호 넥스트유니콘</td><td>10억</td><td>1억</td><td>9억</td></tr>
+        <tr><td>연구개발특구 지역혁신펀드</td><td>10억</td><td>1억</td><td>9억</td></tr>
+        <tr><td>하이테크 기술개발 2호</td><td>10억</td><td>1억</td><td>9억</td></tr>
+        <tr><td>(주)에이지인베스트먼트</td><td>5억</td><td>0.5억</td><td>4.5억</td></tr>
+        <tr class="total-row"><td><strong>합계</strong></td><td><strong>40억</strong></td><td><strong>4억</strong></td><td><strong>36억</strong></td></tr>
       </table>
     </div>
 
     <div class="card">
-      <h2>로티 주주 현황</h2>
+      <h2>마일스톤</h2>
       <table>
-        <tr><th>주주</th><th>종류</th><th>주식수</th><th>지분율</th></tr>
-        <tr><td>임우빈</td><td>보통주</td><td>98,000</td><td>39.85%</td></tr>
-        <tr><td>이보화</td><td>보통주</td><td>53,455</td><td>21.74%</td></tr>
-        <tr><td>(주)야스</td><td>보통주</td><td>45,181</td><td>18.37%</td></tr>
-        <tr><td>인라이트9호</td><td>RCPS</td><td>12,500</td><td>5.08%</td></tr>
-        <tr><td>연구개발특구 지역혁신펀드</td><td>RCPS</td><td>12,500</td><td>5.08%</td></tr>
-        <tr><td>하이테크 기술개발 2호</td><td>RCPS</td><td>12,500</td><td>5.08%</td></tr>
-        <tr><td>(주)에이지인베스트먼트</td><td>RCPS</td><td>6,250</td><td>2.54%</td></tr>
-        <tr><td>안병욱</td><td>보통주</td><td>2,755</td><td>1.12%</td></tr>
-        <tr><td>이성학</td><td>보통주</td><td>2,755</td><td>1.12%</td></tr>
+        <tr><th>#</th><th>항목</th><th>날짜</th><th>상태</th></tr>
+        <tr><td>1</td><td>ABX3 설립</td><td>2026-03-18</td><td class="pro">완료</td></tr>
+        <tr><td>2</td><td>1차투자</td><td>2026-03-20</td><td>-</td></tr>
+        <tr><td>3</td><td>파일럿가동</td><td>2026-04-01</td><td>-</td></tr>
+        <tr><td>4</td><td>로티이전</td><td>2026-04-06</td><td>-</td></tr>
+        <tr><td>5</td><td>장치세팅</td><td>2026-04-10</td><td>-</td></tr>
+        <tr><td>6</td><td>2차투자</td><td>2026-04-15</td><td>-</td></tr>
+        <tr><td>7</td><td>샘플생산</td><td>2026-06-30</td><td>-</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>로티 주주 현황 <span class="badge badge-green">주주명부 2026.01.07</span></h2>
+      <table>
+        <tr><th>#</th><th>주주</th><th>종류</th><th>주식수</th><th>주식금액</th><th>지분율</th></tr>
+        <tr><td>1</td><td>임우빈</td><td>보통주</td><td>98,000</td><td>490,000,000</td><td>39.85%</td></tr>
+        <tr><td>2</td><td>이보화</td><td>보통주</td><td>53,455</td><td>267,275,000</td><td>21.74%</td></tr>
+        <tr><td>3</td><td>(주)야스</td><td>보통주</td><td>45,181</td><td>225,905,000</td><td>18.37%</td></tr>
+        <tr><td>4</td><td>인라이트9호</td><td>RCPS</td><td>12,500</td><td>62,500,000</td><td>5.08%</td></tr>
+        <tr><td>5</td><td>연구개발특구</td><td>RCPS</td><td>12,500</td><td>62,500,000</td><td>5.08%</td></tr>
+        <tr><td>6</td><td>하이테크 2호</td><td>RCPS</td><td>12,500</td><td>62,500,000</td><td>5.08%</td></tr>
+        <tr><td>7</td><td>(주)에이지</td><td>RCPS</td><td>6,250</td><td>31,250,000</td><td>2.54%</td></tr>
+        <tr><td>8</td><td>안병욱</td><td>보통주</td><td>2,755</td><td>13,775,000</td><td>1.12%</td></tr>
+        <tr><td>9</td><td>이성학</td><td>보통주</td><td>2,755</td><td>13,775,000</td><td>1.12%</td></tr>
+        <tr class="total-row"><td></td><td><strong>합계</strong></td><td></td><td><strong>245,896</strong></td><td><strong>1,229,480,000</strong></td><td><strong>100%</strong></td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>RCPS 주요 조건 <span class="badge badge-green">등기부등본</span></h2>
+      <table>
+        <tr><th style="width:35%">항목</th><th>내용</th></tr>
+        <tr><td>존속기간</td><td>발행일로부터 <strong>10년</strong></td></tr>
+        <tr><td>전환비율</td><td>종류주식 1주 &rarr; 보통주 1주</td></tr>
+        <tr><td>상환권</td><td>거래완결일 <strong>3년 경과 후</strong> 상환 청구 가능</td></tr>
+        <tr><td>상환가액</td><td>발행가액 + <strong>연복리 4%</strong></td></tr>
+        <tr><td>지연배상금</td><td><strong>연 12%</strong></td></tr>
+        <tr><td>청산 우선분배</td><td>연복리 4%(1차) / 8%(2차)</td></tr>
+        <tr><td>IPO 전환조정</td><td>공모단가 <strong>70% 하회 시</strong> 전환비율 조정</td></tr>
       </table>
     </div>
   </div>
@@ -290,77 +224,71 @@
   <!-- ===== Plan A ===== -->
   <div class="panel" id="panel-planA">
     <div class="card">
-      <h2><span class="badge badge-a">Plan A</span> 사람들 중심 신규법인 (함안) + 로티 인수</h2>
+      <h2><span class="badge badge-a">Plan A</span> 사람들이 로티 합병 + 신규법인 설립 (함안)</h2>
       <p style="color:var(--text-dim); font-size:0.9rem; margin-bottom:1rem;">
-        사람들이 중심이 되어 함안에 신규법인 설립 &rarr; 로티 사업 계승<br>
-        신규법인이 로티를 순차 인수 &rarr; 결손금 73.3억 즉시 활용
+        사람들이 로티를 합병(주식교환) &rarr; 결손금 즉시 활용<br>
+        신규법인 설립(7월, 함안) &rarr; 사람들 49% &rarr; TIPS/벤처투자
       </p>
-      <div class="flow-diagram"><span class="highlight-a">[Step 1]</span> 설비 &rarr; 함안공장 이전 (공통)
+      <div class="flow-diagram"><span class="ha">[Step 1]</span> 설비 &rarr; 함안공장 이전 (~4/1)
+         사람들이 이전비 ~1억 부담, 무상임대
 
-<span class="highlight-a">[Step 2]</span> 사람들 중심 <span class="highlight-g">신규법인 설립</span> (함안 소재)
-         &boxur;&horz;&horz; 유대표 + 사람들 출자
+<span class="ha">[Step 2]</span> <span class="hg">사람들 &larr; 로티 합병</span> (주식교환) &mdash; 4월 중
+         &boxur;&horz; 기관 <span class="ho">10% 현금 상환 (4억)</span> &larr; 설비 매매 대금
+         &boxur;&horz; 기관 잔액 <span class="hg">36억 &rarr; 신규법인 지분교환</span>
 
-<span class="highlight-a">[Step 3]</span> 기존 기관 exit 처리
-         &boxur;&horz;&horz; <span class="highlight-o">현금 9억</span> 지급 (사람들 자금)
-         &boxur;&horz;&horz; <span class="highlight-g">지분 9억</span> &rarr; 신규법인 주식으로 교환
+<span class="ha">[Step 3]</span> 미지급금 정리
+         &boxur;&horz; 임금/퇴직금: <span class="ho">3.16억</span>
+         &boxur;&horz; 임대표 미지급+가수금: <span class="ho">5.37억</span>
 
-<span class="highlight-a">[Step 4]</span> 신규법인 &rarr; 로티 법인 인수 (100% 지분 취득)
+<span class="ha">[Step 4]</span> <span class="hg">신규법인 설립</span> (함안, 7월)
+         &boxur;&horz; 사람들 <span class="ho">49%</span> (창업기업 요건)
+         &boxur;&horz; 로티 설비+IP &rarr; 사람들이 매도 &rarr; 신규법인 인수
 
-<span class="highlight-a">[Step 5]</span> 신규법인 &larr; 로티 흡수합병
-         &boxur;&horz;&horz; <span class="highlight-o">결손금 73.3억 즉시 승계</span>
-         &boxur;&horz;&horz; 매출 발생 시 법인세 절감 시작
+<span class="ha">[Step 5]</span> 벤처투자 1차: <span class="hg">2~5억</span>
+<span class="ha">[Step 6]</span> 벤처투자 2차: <span class="hg">10억</span>
+<span class="ha">[Step 7]</span> TIPS 신청 (9월~)
 
-<span class="highlight-a">[Step 6]</span> TIPS/연구과제 신청 (신규법인 자격)
-         파일럿 가동 &rarr; Series A~</div>
+<span class="ha">[장기]</span> 결손금 73.3억 &rarr; 합병으로 <span class="ho">즉시 승계</span>
+         사람들 매출 95.8억으로 바로 상계 &rarr; <span class="hg">최대 14.7억 절감</span></div>
     </div>
 
     <div class="card">
       <h2>기관 Exit 경로 <span class="badge badge-a">A안</span></h2>
-      <div class="flow-diagram"><span class="highlight-o">기존 기관 (RCPS 보유)</span>
+      <div class="flow-diagram"><span class="ho">기존 기관 (RCPS 40억)</span>
     &boxv;
-    &boxur;&horz;&horz; [현금 50%] 로티 구주 &rarr; 신규법인에 매각 &rarr; <span class="highlight-o">현금 9억 수령</span>
+    &boxur;&horz; [10%] 현금 &rarr; <span class="ho">4억 수령</span> (설비 매매 대금)
     &boxv;
-    &boxur;&horz;&horz; [지분 50%] 로티 구주 &rarr; <span class="highlight-g">신규법인 신주로 교환</span> &rarr; 9억 상당 지분 보유
-                    &boxur;&horz;&horz; 신규법인 성장 시 추가 업사이드
-                    &boxur;&horz;&horz; 코스닥 상장 시 exit 기회</div>
-      <div class="note">
-        <strong>A안 특징:</strong> 기관이 신규법인에 직접 주주로 잔류 &rarr; 구조 단순<br>
-        로티 인수 시점(4~5월)에 일괄 처리 가능
-      </div>
+    &boxur;&horz; [90%] 로티 구주 &rarr; <span class="hg">신규법인 주식 교환</span> (36억 상당)
+                 &boxur;&horz; 신규법인 성장 시 업사이드
+                 &boxur;&horz; 코스닥 상장 시 exit</div>
     </div>
 
     <div class="card">
-      <h2>결손금 73.3억 활용 <span class="badge badge-a">A안</span></h2>
-      <div class="flow-diagram"><span class="highlight-g">신규법인</span> (사람들 중심, 함안)
+      <h2>결손금 73.3억 활용 <span class="badge badge-a">A안 = 즉시</span></h2>
+      <div class="flow-diagram"><span class="hg">(주)사람들</span> &larr; 로티 합병 (주식교환)
     &boxv;
-    &boxur;&horz;&horz; 로티 100% 인수
+    &boxur;&horz; 로티 결손금 <span class="ho">73.3억 직접 승계</span>
+    &boxv;   &rarr; 사람들 매출 95.8억에서 법인세 절감
+    &boxv;   &rarr; <span class="hg">최대 14.7억 절감</span> (법인세율 20%)
     &boxv;
-    &boxur;&horz;&horz; 로티를 <span class="highlight-o">흡수합병</span>
-         &boxur;&horz;&horz; <span class="highlight-o">결손금 73.3억 승계</span> (법인세법 제44조의3)
-         &boxv;
-         &boxur;&horz;&horz; 요건: 사업 계속성 + 고용 승계 + 1년 이상 유지
-         &boxv;   &rarr; 로티 설비+인력을 이미 운영 중이므로 <span class="highlight-g">충족 가능</span>
-         &boxv;
-         &boxur;&horz;&horz; 효과: 향후 이익과 상계 &rarr; <span class="highlight-g">최대 14.7억 절감</span></div>
-      <div class="note">
-        <strong>A안 강점:</strong> 신규법인이 함안에서 사람들과 함께 운영 &rarr; 매출 발생 빠름 &rarr; 결손금 활용도 빠름
-      </div>
+    &boxur;&horz; <span class="hg">강점: 사람들에 이미 매출 &rarr; 즉시 활용</span></div>
     </div>
 
     <div class="card">
       <h2>실행 단계</h2>
       <table>
         <tr><th>#</th><th>내용</th><th>시기</th></tr>
-        <tr><td>1</td><td>함안공장 설비 이전 (공통)</td><td>~4/1</td></tr>
-        <tr><td>2</td><td>신규법인 설립 (함안, 사람들 중심)</td><td>4월 초</td></tr>
-        <tr><td>3</td><td>RCPS 투자자 동의 + exit 조건 확정</td><td>4월</td></tr>
-        <tr><td>4</td><td>현금 9억 지급 + 지분 9억 교환</td><td>4~5월</td></tr>
-        <tr><td>5</td><td>은행 담보대출 8억 상환</td><td>4~5월</td></tr>
-        <tr><td>6</td><td>신규법인 &rarr; 로티 100% 인수 완료</td><td>5월</td></tr>
-        <tr><td>7</td><td>로티 흡수합병 (결손금 승계)</td><td>5~6월</td></tr>
-        <tr><td>8</td><td>임대표 CTO 합류, 파일럿 가동</td><td>4월~</td></tr>
-        <tr><td>9</td><td>TIPS/연구과제 신청</td><td>5~6월</td></tr>
-        <tr><td>10</td><td>기관 펀딩 (Series A 등)</td><td>하반기~</td></tr>
+        <tr><td>1</td><td>함안공장 설비 이전</td><td>~4/1</td></tr>
+        <tr><td>2</td><td>사람들 &larr; 로티 합병 (주식교환)</td><td>4월 중</td></tr>
+        <tr><td>3</td><td>기관 10% 현금 상환 (4억)</td><td>4월</td></tr>
+        <tr><td>4</td><td>미지급금 정리 (3.16억 + 임대표 5.37억)</td><td>3월말~4월</td></tr>
+        <tr><td>5</td><td>은행 담보 협의 / 채무 인수</td><td>4월</td></tr>
+        <tr><td>6</td><td>임대표 CTO 합류</td><td>4월</td></tr>
+        <tr><td>7</td><td>신규법인 설립 (함안, 사람들 49%)</td><td>7월</td></tr>
+        <tr><td>8</td><td>기관 잔액 36억 &rarr; 신규법인 지분교환</td><td>7월</td></tr>
+        <tr><td>9</td><td>벤처투자 1차 (2~5억)</td><td>하반기</td></tr>
+        <tr><td>10</td><td>TIPS 신청</td><td>9월</td></tr>
+        <tr><td>11</td><td>벤처투자 2차 (10억)</td><td>하반기~</td></tr>
       </table>
     </div>
 
@@ -368,16 +296,17 @@
       <h2>자금 흐름</h2>
       <table>
         <tr><th>항목</th><th>금액</th><th>비고</th></tr>
-        <tr><td>설비 이전비</td><td>~1억</td><td>함안 (1회)</td></tr>
-        <tr><td>은행대출 상환</td><td>8억</td><td>설비 담보 해제</td></tr>
-        <tr><td>미지급금 처리</td><td>4억</td><td>퇴직금 등</td></tr>
-        <tr><td>기관 exit 현금</td><td>9억</td><td>실투입 40%의 50%</td></tr>
-        <tr><td>신규법인 운영</td><td>10~15억</td><td>12개월</td></tr>
-        <tr class="total-row"><td><strong>소계</strong></td><td><strong>32~37억</strong></td><td></td></tr>
-        <tr><td class="pro">TIPS</td><td class="pro">-8억</td><td>신규법인 자격 (2년)</td></tr>
-        <tr><td class="pro">연구과제</td><td class="pro">-3~5억</td><td></td></tr>
-        <tr class="total-row"><td><strong>정부자금 후 실부담</strong></td><td><strong>19~26억</strong></td><td></td></tr>
-        <tr><td class="pro">결손금 절감 (장기)</td><td class="pro">-14.7억</td><td>합병 후 세제 수혜</td></tr>
+        <tr><td>설비 이전비</td><td>~1억</td><td>사람들 부담</td></tr>
+        <tr><td>은행대출 처리</td><td>~8억</td><td>채무 인수 or 상환</td></tr>
+        <tr><td>미지급금 (임금/퇴직금)</td><td>~3.16억</td><td></td></tr>
+        <tr><td>임대표 미지급+가수금</td><td>~5.37억</td><td>처리방법 협의</td></tr>
+        <tr><td>기관 10% 현금 상환</td><td>4억</td><td>설비 매매 대금</td></tr>
+        <tr><td>신규법인 설립+운영</td><td>5~10억</td><td></td></tr>
+        <tr class="total-row"><td><strong>소계</strong></td><td><strong>~26~31억</strong></td><td></td></tr>
+        <tr><td class="pro">벤처투자 1차</td><td class="pro">+2~5억</td><td></td></tr>
+        <tr><td class="pro">벤처투자 2차</td><td class="pro">+10억</td><td></td></tr>
+        <tr><td class="pro">TIPS</td><td class="pro">+8억 (2년)</td><td></td></tr>
+        <tr><td class="pro">결손금 절감</td><td class="pro">-14.7억</td><td>합병 후 즉시</td></tr>
       </table>
     </div>
 
@@ -387,20 +316,21 @@
         <div>
           <h3 class="pro">장점</h3>
           <ul class="pro-list">
-            <li>결손금 73.3억 <strong>즉시 활용</strong> &rarr; 14.7억 절감</li>
-            <li>나주 이사 불필요 &rarr; 설비 1회 이전</li>
+            <li><strong>결손금 즉시 활용</strong> &rarr; 14.7억 절감</li>
+            <li>설비 1회 이전, 나주 이사 없음</li>
             <li>함안 시너지: 알루미늄 + 태양광 수직계열화</li>
-            <li>기관 exit 단순: 구주매수 + 신주교환 일괄</li>
-            <li>TIPS/연구과제 가능 (신규법인 자격)</li>
+            <li>기관 현금 4억만 (10%)</li>
+            <li>신규법인 TIPS/연구과제 가능</li>
           </ul>
         </div>
         <div>
           <h3 class="con">단점/리스크</h3>
           <ul class="con-list">
-            <li>전라도 펀드 30억벨류 2억 <strong>불가</strong></li>
-            <li>exit 현금 9억 조기 확보 필요 (사람들 부담)</li>
-            <li>합병 결손금 승계 요건 법률 검토 필수</li>
-            <li>사람들 관여도 &rarr; 리딩방 이력 상장심사 노출</li>
+            <li><strong>전라도 펀드 2억 불가</strong></li>
+            <li><strong>사람들 캐쉬 부족</strong> (유동비율 67.5%)</li>
+            <li>사람들 부채비율 380%</li>
+            <li>리딩방 이력 상장심사 직접 노출</li>
+            <li>합병 결손금 승계 법률 검토 필수</li>
           </ul>
         </div>
       </div>
@@ -412,113 +342,95 @@
     <div class="card">
       <h2><span class="badge badge-b">Plan B</span> 나주 JV 설립 (Plan J 계승)</h2>
       <p style="color:var(--text-dim); font-size:0.9rem; margin-bottom:1rem;">
-        함안 임시 보관 후 나주에 JV 신설 &rarr; Plan J 구조 계승<br>
-        전라도 펀드 + TIPS + 연구과제 활용 가능 / 결손금은 장기 합병으로 승계
+        함안 임시 보관 후 나주 JV 신설 &rarr; Plan J 계승<br>
+        전라도 펀드 + TIPS + 연구과제 활용 / 결손금 장기 승계
       </p>
-      <div class="flow-diagram"><span class="highlight-b">[Step 1]</span> 설비 &rarr; 함안공장 이전 (공통, 임시)
+      <div class="flow-diagram"><span class="hb">[Step 1]</span> 설비 &rarr; 함안공장 이전 (임시)
 
-<span class="highlight-b">[Step 2]</span> 나주에 <span class="highlight-g">JV 법인 설립</span>
-         유대표 800만 + 오브랩 200만 = Seed 1,000만원
+<span class="hb">[Step 2]</span> 나주 <span class="hg">JV 법인 설립</span>
+         유대표 800만 + 오브랩 200만 = Seed 1,000만
 
-<span class="highlight-b">[Step 3]</span> AC 라운드: 1억 @ Post 10억
+<span class="hb">[Step 3]</span> AC 라운드: <span class="hg">1억</span> @ Post 10억
 
-<span class="highlight-b">[Step 4]</span> 사람들+VC 유증: Pre 20억
-         사람들 <span class="highlight-o">15억</span> + VC <span class="highlight-g">2억</span> (전라도 펀드, 30억 벨류)
+<span class="hb">[Step 4]</span> 사람들+VC 유증: Pre 20억
+         사람들 <span class="ho">15억</span> + VC <span class="hg">2억</span> (전라도 펀드, 30억 벨류)
 
-<span class="highlight-b">[Step 5]</span> 기존 기관 exit 처리
-         &boxur;&horz;&horz; <span class="highlight-o">현금 9억</span> (유증 자금에서 충당)
-         &boxur;&horz;&horz; <span class="highlight-g">지분 9억</span> &rarr; JV 주식으로 교환
+<span class="hb">[Step 5]</span> 기관 exit
+         &boxur;&horz; <span class="ho">10% 현금 (4억)</span> &larr; 유증 자금
+         &boxur;&horz; <span class="hg">90% JV 지분교환 (36억)</span>
 
-<span class="highlight-b">[Step 6]</span> 은행 8억 상환 &rarr; 설비 담보 해제 &rarr; 설비 나주 이전
+<span class="hb">[Step 6]</span> 은행 8억 상환 &rarr; 설비 나주 이전
 
-<span class="highlight-b">[Step 7]</span> JV가 로티 설비+IP 인수 (영업양수도)
+<span class="hb">[Step 7]</span> JV &rarr; 로티 설비+IP 인수
 
-<span class="highlight-b">[Step 8]</span> TIPS 신청 (8억, 2년) / 파일럿 가동
+<span class="hb">[Step 8]</span> TIPS 신청 (8억, 2년)
 
-<span class="highlight-b">[장기]</span> JV &rarr; 로티 흡수합병 (<span class="highlight-o">결손금 승계</span>) &rarr; 코스닥</div>
+<span class="hb">[장기]</span> JV &rarr; 로티 흡수합병 &rarr; <span class="ho">결손금 승계</span> (2027~28)</div>
     </div>
 
     <div class="card">
       <h2>기관 Exit 경로 <span class="badge badge-b">B안</span></h2>
-      <div class="flow-diagram"><span class="highlight-o">기존 기관 (RCPS 보유)</span>
+      <div class="flow-diagram"><span class="ho">기존 기관 (RCPS 40억)</span>
     &boxv;
-    &boxur;&horz;&horz; [현금 50%] 로티 구주 &rarr; JV에 매각 &rarr; <span class="highlight-o">현금 9억 수령</span>
-    &boxv;                                      (유증 자금에서 충당)
+    &boxur;&horz; [10%] 현금 &rarr; <span class="ho">4억 수령</span> (유증 자금에서 충당)
     &boxv;
-    &boxur;&horz;&horz; [지분 50%] 로티 구주 &rarr; <span class="highlight-g">JV 신주로 교환</span> &rarr; 9억 상당 지분 보유
-                    &boxur;&horz;&horz; JV 성장 시 추가 업사이드
-                    &boxur;&horz;&horz; 코스닥 상장 시 exit 기회</div>
-      <div class="note">
-        <strong>B안 특징:</strong> 유증 자금(17억)에서 현금 9억 충당 &rarr; 별도 자금 불필요<br>
-        유증 완료 후(4~5월) 처리 &rarr; A안보다 약간 늦음
-      </div>
+    &boxur;&horz; [90%] 로티 구주 &rarr; <span class="hg">JV 주식 교환</span> (36억 상당)
+                 &boxur;&horz; JV 성장 시 업사이드
+                 &boxur;&horz; 코스닥 상장 시 exit</div>
+      <div class="note">유증 자금(17억)에서 현금 4억 충당 &rarr; 별도 자금 불필요</div>
     </div>
 
     <div class="card">
-      <h2>결손금 73.3억 활용 <span class="badge badge-b">B안</span></h2>
-      <div class="flow-diagram"><span class="highlight-g">JV (나주)</span>                     <span class="highlight-o">로티 (휴면)</span>
-    &boxv;                              &boxv;
-    &boxv;   [2027~2028]                &boxv;
-    &boxur;&horz;&horz;&horz;&horz;&horz;&horz;&horz;&horz; <span class="highlight-o">흡수합병</span> &horz;&horz;&horz;&horz;&horz;&horz;&horz;&horz;&horz;&horz;&horz;&horz;&boxdl;
-                  &boxv;
-                  &boxur;&horz;&horz; 결손금 73.3억 승계
-                  &boxv;
-                  &boxur;&horz;&horz; <span class="highlight-o">주의:</span> 로티를 완전 휴면시키면 요건 미충족
-                  &boxv;   &rarr; 최소한의 사업활동 유지 필요
-                  &boxv;
-                  &boxur;&horz;&horz; 효과: JV 매출 이익과 상계 &rarr; <span class="highlight-g">최대 14.7억 절감</span></div>
-      <div class="note">
-        <strong>B안 약점:</strong> 결손금 활용이 A안 대비 1~2년 지연 / 로티 휴면 중 사업활동 유지 비용 발생
-      </div>
+      <h2>결손금 73.3억 활용 <span class="badge badge-b">B안 = 장기</span></h2>
+      <div class="flow-diagram"><span class="hg">JV (나주)</span>              <span class="ho">로티 (휴면)</span>
+    &boxv;                        &boxv;
+    &boxv;  [2027~2028]           &boxv;
+    &boxur;&horz;&horz;&horz; <span class="ho">흡수합병</span> &horz;&horz;&horz;&horz;&horz;&horz;&horz;&horz;&boxdl;
+            &boxv;
+            &boxur;&horz; 결손금 73.3억 승계
+            &boxv;
+            &boxur;&horz; <span class="hr">주의: 로티 완전 휴면 시 요건 미충족</span>
+            &boxv;   &rarr; 최소 사업활동 유지 필요
+            &boxv;
+            &boxur;&horz; <span class="hg">최대 14.7억 절감</span> (A안 대비 1~2년 지연)</div>
     </div>
 
     <div class="card">
       <h2>실행 단계</h2>
       <table>
         <tr><th>#</th><th>내용</th><th>시기</th></tr>
-        <tr><td>1</td><td>함안공장 설비 이전 (임시 보관)</td><td>~4/1</td></tr>
-        <tr><td>2</td><td>나주 JV 법인 설립 (Seed 1,000만)</td><td>4월 초</td></tr>
-        <tr><td>3</td><td>AC 투자 유치 (Post 10억, 1억)</td><td>4월</td></tr>
-        <tr><td>4</td><td>사람들 15억 + VC 2억 유증 (Pre 20억)</td><td>4~5월</td></tr>
-        <tr><td>5</td><td>기관 exit: 현금 9억 + JV 지분 9억 교환</td><td>5월</td></tr>
+        <tr><td>1</td><td>함안공장 설비 이전 (임시)</td><td>~4/1</td></tr>
+        <tr><td>2</td><td>나주 JV 설립 (Seed 1,000만)</td><td>4월 초</td></tr>
+        <tr><td>3</td><td>AC 투자 (Post 10억, 1억)</td><td>4월</td></tr>
+        <tr><td>4</td><td>사람들 15억 + VC 2억 유증</td><td>4~5월</td></tr>
+        <tr><td>5</td><td>기관 exit: 현금 4억 + JV 지분 36억</td><td>5월</td></tr>
         <tr><td>6</td><td>은행 8억 상환</td><td>5월</td></tr>
-        <tr><td>7</td><td>설비 함안 &rarr; 나주 2차 이전</td><td>5~6월</td></tr>
+        <tr><td>7</td><td>설비 함안&rarr;나주 2차 이전</td><td>5~6월</td></tr>
         <tr><td>8</td><td>임대표 CTO 합류</td><td>5월</td></tr>
-        <tr><td>9</td><td>TIPS 신청</td><td>6월</td></tr>
+        <tr><td>9</td><td>TIPS 신청</td><td>6월~</td></tr>
         <tr><td>10</td><td>파일럿 가동</td><td>하반기</td></tr>
-        <tr><td>11</td><td>JV &rarr; 로티 흡수합병 (결손금 승계)</td><td>2027~2028</td></tr>
+        <tr><td>11</td><td>JV&rarr;로티 합병 (결손금)</td><td>2027~28</td></tr>
       </table>
-    </div>
-
-    <div class="card">
-      <h2>캡테이블 변동</h2>
-      <table>
-        <tr><th>단계</th><th>유대표</th><th>오브랩</th><th>AC</th><th>사람들</th><th>VC</th><th>기존기관</th></tr>
-        <tr><td>Seed</td><td>80%</td><td>20%</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
-        <tr><td>AC</td><td>~72%</td><td>~18%</td><td>~10%</td><td>-</td><td>-</td><td>-</td></tr>
-        <tr><td>유증</td><td>~34%</td><td>~8.5%</td><td>~4.7%</td><td>~45.5%</td><td>~7.3%</td><td>-</td></tr>
-        <tr><td>기관교환</td><td>희석</td><td>희석</td><td>희석</td><td>희석</td><td>희석</td><td>~X%</td></tr>
-      </table>
-      <div class="note">기관 지분교환 비율은 유증 시점 벨류 기준 산정 / 상세: archive_v1 Plan J 참조</div>
     </div>
 
     <div class="card">
       <h2>자금 흐름</h2>
       <table>
         <tr><th>항목</th><th>금액</th><th>비고</th></tr>
-        <tr><td>설비 1차 이전 (&rarr;함안)</td><td>~1억</td><td>공통</td></tr>
+        <tr><td>설비 1차 이전</td><td>~1억</td><td>사람들 부담</td></tr>
         <tr><td>설비 2차 이전 (&rarr;나주)</td><td>~1.5억</td><td>추가</td></tr>
         <tr><td>은행대출 상환</td><td>8억</td><td>유증 자금</td></tr>
-        <tr><td>미지급금 처리</td><td>4억</td><td></td></tr>
-        <tr><td>기관 exit 현금</td><td>9억</td><td>유증 자금에서 충당</td></tr>
-        <tr><td>나주 공장 세팅</td><td>2~3억</td><td>임대+전력+유틸</td></tr>
-        <tr><td>JV 운영비 (12개월)</td><td>5~8억</td><td></td></tr>
-        <tr class="total-row"><td><strong>소계</strong></td><td><strong>30~35억</strong></td><td></td></tr>
-        <tr><td class="pro">TIPS</td><td class="pro">-8억</td><td>2년</td></tr>
-        <tr><td class="pro">연구과제</td><td class="pro">-3~5억</td><td></td></tr>
-        <tr><td class="pro">전라도 펀드</td><td class="pro">-2억</td><td></td></tr>
-        <tr class="total-row"><td><strong>정부자금 후 실부담</strong></td><td><strong>15~22억</strong></td><td></td></tr>
-        <tr><td class="pro">결손금 절감 (장기)</td><td class="pro">-14.7억</td><td>2027~28 합병 후</td></tr>
+        <tr><td>미지급금</td><td>~3.16억</td><td></td></tr>
+        <tr><td>임대표 미지급+가수금</td><td>~5.37억</td><td></td></tr>
+        <tr><td>기관 10% 현금</td><td>4억</td><td>유증 자금</td></tr>
+        <tr><td>나주 공장 세팅</td><td>2~3억</td><td>임대+전력</td></tr>
+        <tr><td>JV 운영 (12개월)</td><td>5~8억</td><td></td></tr>
+        <tr class="total-row"><td><strong>소계</strong></td><td><strong>~30~35억</strong></td><td></td></tr>
+        <tr><td class="pro">전라도 펀드</td><td class="pro">+2억</td><td></td></tr>
+        <tr><td class="pro">TIPS</td><td class="pro">+8억 (2년)</td><td></td></tr>
+        <tr><td class="pro">연구과제</td><td class="pro">+3~5억</td><td></td></tr>
+        <tr class="total-row"><td><strong>정부자금 후</strong></td><td><strong>~15~22억</strong></td><td></td></tr>
+        <tr><td class="pro">결손금 절감</td><td class="pro">-14.7억</td><td>2027~28 합병 후</td></tr>
       </table>
     </div>
 
@@ -528,21 +440,22 @@
         <div>
           <h3 class="pro">장점</h3>
           <ul class="pro-list">
-            <li>전라도 펀드 30억벨류 <strong>2억 유치 가능</strong></li>
+            <li><strong>전라도 펀드 2억 유치</strong></li>
             <li>TIPS 8억 + 연구과제 3~5억 = 정부자금 최대 13억</li>
-            <li>깨끗한 캡테이블 &rarr; 코스닥 상장심사 유리</li>
-            <li>사람들 리딩방 이력 JV에 직접 노출 안됨</li>
-            <li>exit 현금을 유증 자금에서 충당 (별도 부담 없음)</li>
+            <li>깨끗한 캡테이블 &rarr; 상장심사 유리</li>
+            <li>사람들 리딩방 이력 JV에 미노출</li>
+            <li>기관 현금 4억 유증에서 충당</li>
+            <li>사람들 캐쉬 리스크 JV에 전이 안됨</li>
           </ul>
         </div>
         <div>
           <h3 class="con">단점/리스크</h3>
           <ul class="con-list">
-            <li>설비 <strong>2회 이전</strong> &rarr; 추가 ~1.5억 + 시간</li>
-            <li>나주 공장 신규 확보 (2~3억)</li>
-            <li>결손금 승계 <strong>1~2년 지연</strong></li>
-            <li>로티 휴면 중 결손금 요건 유지 리스크</li>
-            <li>구조 복잡 (JV + 로티 + 사람들 = 3법인)</li>
+            <li><strong>설비 2회 이전</strong> (+1.5억, 시간)</li>
+            <li>나주 공장 확보 (2~3억)</li>
+            <li>결손금 <strong>1~2년 지연</strong></li>
+            <li>로티 휴면 중 요건 유지 리스크</li>
+            <li>3법인 구조 복잡</li>
           </ul>
         </div>
       </div>
@@ -554,106 +467,111 @@
     <div class="card">
       <h2>Plan A vs B 종합 비교</h2>
       <table>
-        <tr><th style="width:28%">기준</th><th style="width:36%" class="compare-cell-a">Plan A (함안 신규법인)</th><th style="width:36%" class="compare-cell-b">Plan B (나주 JV)</th></tr>
-        <tr>
-          <td><strong>설비 이전</strong></td>
-          <td class="win compare-cell-a">1회 (&rarr;함안)</td>
-          <td class="compare-cell-b">2회 (&rarr;함안&rarr;나주)</td>
-        </tr>
-        <tr>
-          <td><strong>기관 exit 현금 재원</strong></td>
-          <td class="compare-cell-a">사람들 자금 (9억)</td>
-          <td class="win compare-cell-b">유증 자금에서 충당</td>
-        </tr>
-        <tr>
-          <td><strong>기관 지분 유지</strong></td>
-          <td class="compare-cell-a">신규법인 주주</td>
-          <td class="compare-cell-b">JV 주주</td>
-        </tr>
-        <tr>
-          <td><strong>결손금 활용 시점</strong></td>
-          <td class="win compare-cell-a">빠름 (합병 즉시)</td>
-          <td class="compare-cell-b">늦음 (2027~28)</td>
-        </tr>
-        <tr>
-          <td><strong>결손금 승계 리스크</strong></td>
-          <td class="win compare-cell-a">낮음 (사업 연속성)</td>
-          <td class="compare-cell-b">중간 (휴면 요건 주의)</td>
-        </tr>
-        <tr>
-          <td><strong>전라도 펀드 2억</strong></td>
-          <td class="tag-no">불가</td>
-          <td class="tag-yes win">가능</td>
-        </tr>
-        <tr>
-          <td><strong>TIPS / 연구과제</strong></td>
-          <td class="tag-yes">가능</td>
-          <td class="tag-yes">가능</td>
-        </tr>
-        <tr>
-          <td><strong>초기 필요자금</strong></td>
-          <td class="compare-cell-a">32~37억</td>
-          <td class="compare-cell-b">30~35억</td>
-        </tr>
-        <tr>
-          <td><strong>정부자금 후 실부담</strong></td>
-          <td class="compare-cell-a">19~26억</td>
-          <td class="win compare-cell-b">15~22억</td>
-        </tr>
-        <tr>
-          <td><strong>코스닥 경로</strong></td>
-          <td class="compare-cell-a">신규법인 직접</td>
-          <td class="compare-cell-b">JV 상장</td>
-        </tr>
-        <tr>
-          <td><strong>상장심사 리스크</strong></td>
-          <td class="compare-cell-a">사람들 관여 노출</td>
-          <td class="win compare-cell-b">JV로 분리 가능</td>
-        </tr>
-        <tr>
-          <td><strong>사업 시너지</strong></td>
-          <td class="win compare-cell-a"><span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 함안 집중</td>
-          <td class="compare-cell-b"><span class="star">&#9733;&#9733;&#9733;</span> 나주-함안 분리</td>
-        </tr>
-        <tr>
-          <td><strong>구조 복잡도</strong></td>
-          <td class="win compare-cell-a">중간 (2법인)</td>
-          <td class="compare-cell-b">높음 (3법인)</td>
-        </tr>
+        <tr><th style="width:30%">기준</th><th style="width:35%" class="compare-cell-a">Plan A (함안)</th><th style="width:35%" class="compare-cell-b">Plan B (나주 JV)</th></tr>
+        <tr><td><strong>설비 이전</strong></td><td class="win compare-cell-a">1회</td><td>2회</td></tr>
+        <tr><td><strong>기관 현금 재원</strong></td><td>설비 매매 (4억)</td><td class="win compare-cell-b">유증 자금 (4억)</td></tr>
+        <tr><td><strong>기관 지분교환</strong></td><td>36억&rarr;신규법인</td><td>36억&rarr;JV</td></tr>
+        <tr><td><strong>결손금 활용</strong></td><td class="win compare-cell-a">즉시 (합병)</td><td>장기 (2027~28)</td></tr>
+        <tr><td><strong>결손금 리스크</strong></td><td class="win compare-cell-a">낮음</td><td>중간 (휴면 요건)</td></tr>
+        <tr><td><strong>전라도 펀드 2억</strong></td><td class="tag-no">불가</td><td class="tag-yes win">가능</td></tr>
+        <tr><td><strong>TIPS/연구과제</strong></td><td class="tag-yes">가능</td><td class="tag-yes">가능</td></tr>
+        <tr><td><strong>소요자금</strong></td><td>~26~31억</td><td>~30~35억</td></tr>
+        <tr><td><strong>정부자금 후</strong></td><td>~26~31억</td><td class="win compare-cell-b">~15~22억</td></tr>
+        <tr><td><strong>사람들 캐쉬 리스크</strong></td><td class="con">직접 노출</td><td class="win compare-cell-b">분리</td></tr>
+        <tr><td><strong>상장심사</strong></td><td>리딩방 노출</td><td class="win compare-cell-b">JV 분리</td></tr>
+        <tr><td><strong>사업 시너지</strong></td><td class="win compare-cell-a"><span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span></td><td><span class="star">&#9733;&#9733;&#9733;</span></td></tr>
+        <tr><td><strong>구조 복잡도</strong></td><td class="win compare-cell-a">중간 (2법인)</td><td>높음 (3법인)</td></tr>
       </table>
     </div>
 
     <div class="card">
       <h2>핵심 트레이드오프</h2>
       <table>
-        <tr><th style="width:50%" class="compare-cell-a">A안 선택 시 얻는 것</th><th style="width:50%" class="compare-cell-b">B안 선택 시 얻는 것</th></tr>
+        <tr><th class="compare-cell-a">A안 선택 시 얻는 것</th><th class="compare-cell-b">B안 선택 시 얻는 것</th></tr>
         <tr>
-          <td>
-            &bull; 결손금 <strong>즉시</strong> 활용 (14.7억)<br>
-            &bull; 설비 1회 이전 (비용+시간 절약)<br>
-            &bull; 함안 시너지 극대화<br>
-            &bull; 단순한 구조 (2법인)
-          </td>
-          <td>
-            &bull; 전라도 펀드 <strong>2억 추가</strong><br>
-            &bull; 정부자금 후 실부담 <strong>4억 절감</strong><br>
-            &bull; 깨끗한 캡테이블 (상장 유리)<br>
-            &bull; 사람들 리스크 분리
-          </td>
+          <td>&bull; 결손금 <strong>즉시</strong> 14.7억<br>&bull; 설비 1회 이전<br>&bull; 함안 시너지<br>&bull; 단순 구조</td>
+          <td>&bull; 전라도 펀드 <strong>2억</strong><br>&bull; 정부자금 최대 <strong>13억</strong><br>&bull; 깨끗한 캡테이블<br>&bull; 사람들 리스크 분리</td>
         </tr>
-        <tr><th class="compare-cell-a">A안 선택 시 포기하는 것</th><th class="compare-cell-b">B안 선택 시 포기하는 것</th></tr>
+        <tr><th class="compare-cell-a">A안에서 포기하는 것</th><th class="compare-cell-b">B안에서 포기하는 것</th></tr>
         <tr>
-          <td>
-            &bull; 전라도 펀드 2억<br>
-            &bull; 사람들 리스크 직접 노출
-          </td>
-          <td>
-            &bull; 결손금 즉시 활용 (1~2년 지연)<br>
-            &bull; 설비 2차 이전비 ~1.5억<br>
-            &bull; 함안 시너지<br>
-            &bull; 구조 단순성
-          </td>
+          <td>&bull; 전라도 펀드 2억<br>&bull; 사람들 리스크 직접 노출</td>
+          <td>&bull; 결손금 즉시 (1~2년 지연)<br>&bull; 이전비 +1.5억<br>&bull; 함안 시너지<br>&bull; 구조 단순성</td>
         </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===== 사람들 DD ===== -->
+  <div class="panel" id="panel-saramdeul">
+    <div class="card">
+      <h2>(주)사람들 기업 분석 <span class="badge badge-pink">NICE BizLINE 2026.03.15</span></h2>
+      <table>
+        <tr><th style="width:35%">항목</th><th>내용</th></tr>
+        <tr><td>기업명</td><td>(주)사람들 / 673-87-01808</td></tr>
+        <tr><td>대표</td><td>유승덕</td></tr>
+        <tr><td>설립</td><td>2021.01.21</td></tr>
+        <tr><td>본사</td><td>경남 창원시 마산합포구 해안대로 396, 4층</td></tr>
+        <tr><td>업종</td><td>(C25112) 구조용 금속 판제품 제조업</td></tr>
+        <tr><td>산업 내 순위</td><td><strong>128위</strong> (96억원 매출 기준)</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>등급 정보</h2>
+      <table>
+        <tr><th>구분</th><th>등급</th><th>변동</th></tr>
+        <tr><td>기업평가등급</td><td><strong>BB-</strong></td><td class="con">1단계 하락 (2025.10)</td></tr>
+        <tr><td>Watch등급</td><td><strong>유보</strong></td><td>(2025.12)</td></tr>
+        <tr><td>현금흐름등급</td><td><strong>CF1</strong></td><td class="pro">5단계 상승 (2024.12)</td></tr>
+        <tr><td>차입금 Risk (재무제표)</td><td colspan="2" class="con"><strong>과다</strong></td></tr>
+        <tr><td>차입금 Risk (최근)</td><td colspan="2">평균</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>재무상태표 (단위: 천원)</h2>
+      <table>
+        <tr><th>구분</th><th>2022</th><th>2023</th><th>2024</th></tr>
+        <tr><td>유동자산</td><td>914,109</td><td>2,582,590</td><td><strong>5,471,053</strong></td></tr>
+        <tr><td>비유동자산</td><td>4,051,423</td><td>4,198,561</td><td><strong>4,768,047</strong></td></tr>
+        <tr><td><strong>자산총계</strong></td><td>4,965,532</td><td>6,781,151</td><td><strong>10,239,100</strong></td></tr>
+        <tr><td>유동부채</td><td>4,933,010</td><td>6,579,613</td><td><strong>8,105,286</strong></td></tr>
+        <tr><td><strong>부채총계</strong></td><td>4,933,010</td><td>6,579,613</td><td><strong>8,105,286</strong></td></tr>
+        <tr><td>자본금</td><td>100,000</td><td>250,000</td><td><strong>250,000</strong></td></tr>
+        <tr><td><strong>자본총계</strong></td><td>32,522</td><td>201,538</td><td><strong>2,133,814</strong></td></tr>
+      </table>
+      <div class="note-red">
+        <strong>유동비율 67.5%</strong> (유동자산 54.7억 / 유동부채 81.1억) &mdash; 100% 미만, 단기 지급능력 부족<br>
+        <strong>부채비율 379.85%</strong> &mdash; 차입금 과다
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>손익계산서 (단위: 천원)</h2>
+      <table>
+        <tr><th>구분</th><th>2022</th><th>2023</th><th>2024</th></tr>
+        <tr><td><strong>매출액</strong></td><td>203,336</td><td>3,341,900</td><td><strong>9,578,520</strong></td></tr>
+        <tr><td>매출총이익</td><td>203,336</td><td>708,153</td><td><strong>2,563,969</strong></td></tr>
+        <tr><td><strong>영업이익</strong></td><td>-7,404</td><td>22,473</td><td><strong>1,762,420</strong></td></tr>
+        <tr><td><strong>당기순이익</strong></td><td>30,926</td><td>19,016</td><td><strong>1,789,276</strong></td></tr>
+      </table>
+      <div class="note">매출 성장률 <strong>186.62%</strong> / 영업이익률 <strong>18.40%</strong> &mdash; 성장성은 매우 양호</div>
+    </div>
+
+    <div class="card">
+      <h2>DD 우려사항 <span class="badge badge-red">Lee, 2026-03-15</span></h2>
+      <div class="note-red">
+        "사람들 회사는 <strong>캐쉬가 없어 보인다</strong>" &mdash; 유동비율 67.5% 확인<br>
+        "상장하기 지금으로는 어렵다"<br>
+        "1차 기계 인수 후 문제가 될 소지가 크다"<br>
+        "회사 히스토리가 좀 우려됩니다" &mdash; 등기 이력
+      </div>
+      <h3>추가 리스크</h3>
+      <table>
+        <tr><td>과거 주식 리딩방</td><td>유한회사 "주식으로미래를여는사람들" (유대표 등기임원, ~2025초)</td></tr>
+        <tr><td>자본금</td><td>2.5억 (기존 인식 9.86억과 차이)</td></tr>
+        <tr><td>퇴사율 (6개월)</td><td>14.29%</td></tr>
+        <tr><td>입사율 (6개월)</td><td>46.43% (급속 확장 중)</td></tr>
       </table>
     </div>
   </div>
@@ -661,18 +579,17 @@
   <!-- ===== 미결사항 ===== -->
   <div class="panel" id="panel-todo">
     <div class="card">
-      <h2>미결 사항 (Leo 확인 필요)</h2>
+      <h2>미결 사항</h2>
       <table>
-        <tr><th>#</th><th>항목</th><th class="compare-cell-a">A안</th><th class="compare-cell-b">B안</th><th>비고</th></tr>
-        <tr><td>1</td><td>은행 담보 이전/상환 사전 협의</td><td>필수</td><td>필수</td><td>설비 이전 전</td></tr>
-        <tr><td>2</td><td>기관 exit 40% 조건 최종 확인</td><td>현금9+지분9</td><td>동일</td><td>Son과 협의</td></tr>
-        <tr><td>3</td><td>야스 현물출자분 별도 정산</td><td>필요</td><td>필요</td><td>감정가 vs 출자분</td></tr>
-        <tr><td>4</td><td>임대표 가지급 4억 처리</td><td>인수 시 처리</td><td>휴면 시 동결</td><td></td></tr>
-        <tr><td>5</td><td>합병 결손금 승계 법률 검토</td><td>핵심 (즉시)</td><td>핵심 (장기)</td><td>법률자문</td></tr>
-        <tr><td>6</td><td>사람들 즉시 가용 현금 규모</td><td>exit9+상환8</td><td>유증 15억</td><td></td></tr>
-        <tr><td>7</td><td>나주 공장 후보지</td><td>해당없음</td><td>필요</td><td></td></tr>
-        <tr><td>8</td><td>TIPS 대표이사</td><td>필요</td><td>필요</td><td>유대표 vs 임대표</td></tr>
-        <tr><td>9</td><td>신규법인/JV 초기 지분구조</td><td>사람들+유대표</td><td>유+오브랩 Seed</td><td></td></tr>
+        <tr><th>#</th><th>항목</th><th class="compare-cell-a">A안</th><th class="compare-cell-b">B안</th></tr>
+        <tr><td>1</td><td>은행 담보 협의 (채무 인수 방식)</td><td>필수</td><td>필수</td></tr>
+        <tr><td>2</td><td>임대표 가수금 3.99억 처리</td><td>합병 시 처리</td><td>휴면 시 동결</td></tr>
+        <tr><td>3</td><td>합병 결손금 승계 법률 검토</td><td>핵심 (즉시)</td><td>핵심 (장기)</td></tr>
+        <tr><td>4</td><td>사람들 즉시 가용 현금</td><td>은행채무+미지급</td><td>유증 15억</td></tr>
+        <tr><td>5</td><td>나주 공장 후보지</td><td>해당없음</td><td>필요</td></tr>
+        <tr><td>6</td><td>TIPS 대표이사</td><td>필요</td><td>필요</td></tr>
+        <tr><td>7</td><td>신규법인 지분구조 (사람들 49%)</td><td>핵심</td><td>Seed(유+오브랩)</td></tr>
+        <tr><td>8</td><td>이보화/야스 구주 처리</td><td>합병 시 교환</td><td>별도 협의</td></tr>
       </table>
     </div>
   </div>
@@ -682,21 +599,11 @@
 <script>
 function switchTab(tabId) {
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t => {
-    t.className = 'tab';
-  });
+  document.querySelectorAll('.tab').forEach(t => t.className = 'tab');
   document.getElementById('panel-' + tabId).classList.add('active');
-  const activeTab = document.querySelector(`.tab[data-tab="${tabId}"]`);
-  const classMap = {
-    common: 'active-common',
-    planA: 'active-a',
-    planB: 'active-b',
-    compare: 'active-compare',
-    todo: 'active-todo'
-  };
-  activeTab.classList.add(classMap[tabId]);
+  const map = { common:'active-common', planA:'active-a', planB:'active-b', compare:'active-compare', saramdeul:'active-saramdeul', todo:'active-todo' };
+  document.querySelector(`.tab[data-tab="${tabId}"]`).classList.add(map[tabId]);
 }
 </script>
-
 </body>
 </html>
